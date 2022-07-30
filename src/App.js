@@ -6,21 +6,22 @@ import React, {
   useReducer,
   useCallback,
   useTransition,
-} from 'react';
-import { ClassContextComponent } from './ClassContextComponent';
-import { FunctionContextComponent } from './FunctionContextComponent';
-import { ThemeProvider } from './ThemeContext';
-import Todo from './Todo';
-import List from './List';
-import useLocalStorage from './useLocalStorage';
-import useUpdateLogger from './useUpdateLogger';
-import { List1 } from './List1';
-import CustomInput from './CustomInput';
-import ConfirmationModal from './ConfirmationModal';
+} from "react";
+import { ClassContextComponent } from "./ClassContextComponent";
+import { FunctionContextComponent } from "./FunctionContextComponent";
+import { ThemeProvider } from "./ThemeContext";
+import Todo from "./Todo";
+import List from "./List";
+import useLocalStorage from "./useLocalStorage";
+import useUpdateLogger from "./useUpdateLogger";
+import { List1 } from "./List1";
+import CustomInput from "./CustomInput";
+import ConfirmationModal from "./ConfirmationModal";
+import EmailForm from "./EmailForm";
 export const ACTIONS = {
-  ADD_TODO: 'add-todo',
-  TOGGLE_TODO: 'toggle-todo',
-  DELETE_TODO: 'delete-todo',
+  ADD_TODO: "add-todo",
+  TOGGLE_TODO: "toggle-todo",
+  DELETE_TODO: "delete-todo",
 };
 
 export default function App() {
@@ -90,7 +91,6 @@ export default function App() {
   //     <div style={themeStyles}>{doubleNumber}</div>
   //   </>
   // );
-
   /* useRef example1*/
   // const [name, setName] = useState('');
   // const renderCount = useRef(0);
@@ -240,7 +240,7 @@ export default function App() {
   // );
   /*  */
   /* custom hook example1 (自定义钩子)*/
-  // const [name, setName] = useLocalStorage('name', '');
+  // const [name, setName] = useLocalStorage("name", "");
   // useUpdateLogger(name);
   // return (
   //   <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
@@ -283,21 +283,18 @@ export default function App() {
   //         })}
   //   </>
   // );
-
   /* useDeferredValue example1 */
   // // useDeferredValue用于拖延组件传递的值，防止数据过时，比如说在一个输入框中输入字符串，useDeferredValue可以获取到最终的值而忽略中间值
   // const [input, setInput] = useState('');
   // function handleChange(e) {
   //   setInput(e.target.value);
   // }
-
   // return (
   //   <>
   //     <input type="text" value={input} onChange={handleChange} />
   //     <List1 input={input} />
   //   </>
   // );
-
   /* useImperativeHandle example1 */
   // // useImperativeHandle用于改变ref的实例，在下面这个例子中，ref指向一个只有alterHi方法的对象
   // const [value, setValue] = useState('red');
@@ -313,27 +310,46 @@ export default function App() {
   //     <button onClick={() => inputRef.current.alertHi()}>Focus</button>
   //   </>
   // );
-
   /* useImperativeHandle example2 */
-  const [open, setOpen] = useState(false);
-  const modaRef = useRef();
+  // const [open, setOpen] = useState(false);
+  // const modalRef = useRef();
+  // return (
+  //   <>
+  //     <button onClick={() => setOpen(true)}>Open</button>
+  //     <button onClick={() => modalRef.current.focusCloseBtn()}>
+  //       Focus Close
+  //     </button>
+  //     <button onClick={() => modalRef.current.focusConfirmBtn()}>
+  //       Focus Confirm
+  //     </button>
+  //     <button onClick={() => modalRef.current.focusDenyBtn()}>
+  //       Focus Deny
+  //     </button>
+  //     <ConfirmationModal
+  //       ref={modalRef}
+  //       isOpen={open}
+  //       onClose={() => setOpen(false)}
+  //     />
+  //   </>
+  // );
+  /* useId example1 */
   return (
     <>
-      <button onClick={() => setOpen(true)}>Open</button>
-      <button>Focus Close</button>
-      <button>Focus Confirm</button>
-      <button>Focus Deny</button>
-      <ConfirmationModal
-        ref={modaRef}
-        isOpen={open}
-        onClose={() => setOpen(false)}
-      />
+      <EmailForm />
+      <article style={{ marginBlock: "1rem" }}>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, suscipit!
+        Sed dolorum enim doloribus velit illo quo commodi quas autem. Recusandae
+        nemo nam iusto autem deleniti quaerat ullam temporibus delectus! Vero
+        natus iusto numquam molestias, voluptates temporibus eius expedita
+        culpa!
+      </article>
+      <EmailForm />
     </>
   );
 }
 
 function slowFunction(num) {
-  console.log('Calling Slow Function');
+  console.log("Calling Slow Function");
   for (let i = 0; i <= 1000000000; i++) {}
   return num * 2;
 }
